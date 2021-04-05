@@ -25,13 +25,19 @@ namespace Web_Contact_Extractor.Controllers
 
         [HttpGet]
         [Route("Url")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ContactDTO))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ContactDTO>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CrawlContactInfo(string url)
+        public async Task<IActionResult> CrawlContactInfo([FromQuery]string[] url)
         {
             
             // _logger.LogInformation(document.DocumentElement.OuterHtml);
-            return Ok(await _contract.CrawlContactInfo(url));
+            List<string> urls = url.ToList<string>();
+            // url.To
+            // for (var i = 0; i < url.Length; i++)
+            // {
+            //     urls.Add(url[i]);
+            // }
+            return Ok(await _contract.CrawlContactInfo(urls));
         }
     }
 }

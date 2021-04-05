@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Web_Contact_Extractor.DTOs;
-
+using System.Collections.Generic;
 namespace Web_Contact_Extractor.Command
 {
     public class ConcreteCommand : Command, ICommand
@@ -11,9 +11,9 @@ namespace Web_Contact_Extractor.Command
             _receiver = receiver;
         }
 
-        public async override Task<ContactDTO> Execute()
+        public async override Task<List<ContactDTO>> Execute()
         {
-            return await _receiver.MakeHttpRequest();
+            return await _receiver.GetContactInfo();
         }
     }
 }

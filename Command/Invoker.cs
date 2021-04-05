@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Web_Contact_Extractor.DTOs;
+using System.Collections.Generic;
 
 namespace Web_Contact_Extractor.Command
 {
@@ -12,7 +13,7 @@ namespace Web_Contact_Extractor.Command
             _command = command;
         }
 
-        public async Task<ContactDTO> ExecuteCommand()
+        public async Task<List<ContactDTO>> ExecuteCommand()
         {
             return await _command.Execute();
         }

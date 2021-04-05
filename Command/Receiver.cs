@@ -13,12 +13,12 @@ namespace Web_Contact_Extractor.Command
 {
     public class Receiver : IReceiver
     {
-        private string _url;
+        private IList<string> _urls;
         private IContactAdapter _adapter;
         private IContact _contact;
-        public Receiver(string url, IContactAdapter adapter, IContact contact)
+        public Receiver(IList<string> url, IContactAdapter adapter, IContact contact)
         {
-            _url = url;
+            _urls = url;
             _adapter = adapter;
             _contact = contact;
         }
@@ -28,14 +28,21 @@ namespace Web_Contact_Extractor.Command
             Console.WriteLine("Action receieved Command");
         }
 
-        public async Task<ContactDTO> MakeHttpRequest()
+        public async Task<List<ContactDTO>> GetContactInfo()
         {
+            List<ContactDTO> contacts = new List<ContactDTO>();
+            
             var addressRegex = new System.Text.RegularExpressions.Regex(Regex.Regex.Address);
             var config = Configuration.Default.WithDefaultLoader();
             var context = BrowsingContext.New(config);
-            var document = await context.OpenAsync(_url);
-            var contact = _adapter.ToContactDTO(_contact.Name(_url), _contact.Title(document), _contact.Company(document), _contact.Address(document), _contact.Phone(document), _contact.Fax(document), _contact.Email(document));
-            return contact;
+
+            foreach(string url in _urls)
+            {
+                var document = await context.OpenAsync(url);
+                contacts.Add(_adapter.ToContactDTO(_contact.Name(url), _contact.Title(document), _contact.Company(document), _contact.Address(document), _contact.Phone(document), _contact.Fax(document), _contact.Email(document)));
+            }
+            
+            return contacts;
         }
 
     }

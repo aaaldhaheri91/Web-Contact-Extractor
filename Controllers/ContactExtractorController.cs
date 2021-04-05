@@ -27,11 +27,15 @@ namespace Web_Contact_Extractor.Controllers
         [Route("Url")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ContactDTO>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CrawlContactInfo([FromQuery]string[] url)
+        public async Task<IActionResult> CrawlContactInfo([FromQuery]string[] url, [FromQuery]int deepCrawl = 0)
         {
             
             // _logger.LogInformation(document.DocumentElement.OuterHtml);
             List<string> urls = url.ToList<string>();
+            if (deepCrawl != 0)
+            {
+                return Ok(await _contract.CrawlContactInfo(urls, deepCrawl));
+            }
             return Ok(await _contract.CrawlContactInfo(urls));
         }
     }

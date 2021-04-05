@@ -55,5 +55,15 @@ namespace Web_Contact_Extractor.Command
             return contacts;
         }
 
+        public async Task<List<ContactDTO>> GetContactInfo(int deepCrawl)
+        {
+            return await GetContactInfo();
+        }
+
+        // private async Task<List<ContactDTO>> GetContactInfoTask(IList<string> urls)
+        // {
+            
+        // }
+
     }
 }

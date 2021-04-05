@@ -12,5 +12,6 @@ namespace Web_Contact_Extractor.Command
 
         }
         public abstract Task<List<ContactDTO>> Execute();
+        public abstract Task<List<ContactDTO>> Execute(int deepCrawl);
     }
 }

@@ -8,5 +8,6 @@ namespace Web_Contact_Extractor.Command
     {
         public void SetCommand(ICommand command);
         public Task<List<ContactDTO>> ExecuteCommand();
+        public Task<List<ContactDTO>> ExecuteCommand(int deepCrawl);
     }
 }

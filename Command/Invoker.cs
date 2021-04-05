@@ -17,5 +17,10 @@ namespace Web_Contact_Extractor.Command
         {
             return await _command.Execute();
         }
+
+        public async Task<List<ContactDTO>> ExecuteCommand(int deepCrawl)
+        {
+            return await _command.Execute(deepCrawl);
+        }
     }
 }

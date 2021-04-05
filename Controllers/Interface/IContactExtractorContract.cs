@@ -6,5 +6,6 @@ namespace Web_Contact_Extractor.Controllers
     public interface IContactExtractorContract
     {
         public Task<List<ContactDTO>> CrawlContactInfo(List<string> url);
+        public Task<List<ContactDTO>> CrawlContactInfo(List<string> url, int deepCrawl);
     }
 }

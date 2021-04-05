@@ -1,10 +1,15 @@
 https://taysteesburger.com/
 https://alameerrestaurant.com/contact/
 https://hot-bite-cafe.business.site/#details
-http://www.goldenhalalpizza.com/
 http://manderin-cafe.edan.io/
 https://umdearborn.edu/
 https://www.umflint.edu/
 https://etsfirm.com/
 https://www.nagicpa.com/contact-us.html
-https://palmerrey.com/contact
+http://school.masjidtawheed.org/?page_id=17
+https://wayne.edu/
+
+// not 100% working 
+http://mochabistro.com/contact/
+https://www.grandcircus.co/learn-to-code/?utm_term=grand%20circus&utm_campaign=Grand+Circus+Branded&utm_source=adwords&utm_medium=ppc&hsa_acc=1576702983&hsa_cam=8849816301&hsa_grp=87836375703&hsa_ad=411137638494&hsa_src=g&hsa_tgt=kwd-366845262225&hsa_kw=grand%20circus&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=EAIaIQobChMIg6jQhLzm7wIVuCqzAB2pig4eEAAYASAAEgL7hvD_BwE
+https://umich.edu/

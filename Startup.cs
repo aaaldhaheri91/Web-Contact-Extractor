@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Web_Contact_Extractor.Controllers;
 using Web_Contact_Extractor.Command;
 using Web_Contact_Extractor.Adapter;
+using Web_Contact_Extractor.Extractor;
 
 namespace Web_Contact_Extractor
 {
@@ -33,6 +34,8 @@ namespace Web_Contact_Extractor
             services.AddScoped<IReceiver, Receiver>();
             services.AddScoped<ICommand, ConcreteCommand>();
             services.AddScoped<IContactAdapter, ContactAdapter>();
+            services.AddScoped<IContact, Contact>();
+            services.AddScoped<IAddress, Address>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

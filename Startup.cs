@@ -36,6 +36,8 @@ namespace Web_Contact_Extractor
             services.AddScoped<IContactAdapter, ContactAdapter>();
             services.AddScoped<IContact, Contact>();
             services.AddScoped<IAddress, Address>();
+            services.AddScoped<IInovker, Invoker>();
+            services.AddScoped<IContext, Context>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

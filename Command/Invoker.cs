@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Web_Contact_Extractor.Command
 {
-    public class Invoker
+    public class Invoker : IInovker
     {
         private ICommand _command;
 

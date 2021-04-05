@@ -15,24 +15,33 @@ namespace Web_Contact_Extractor.Controllers
         private readonly ILogger<IContactExtractorContract> _logger;
         private IContactAdapter _adapter;
         private IContact _contact;
+        private IContext _context;
 
-        public ContactExtractorContract(ILogger<IContactExtractorContract> logger, IContactAdapter adapter, IContact contact)
+        public ContactExtractorContract(ILogger<IContactExtractorContract> logger, IContactAdapter adapter, IContact contact, IContext context)
         {
             _logger = logger;
             _adapter = adapter;
             _contact = contact;
+            _context = context;
         }
 
+        public void SetContext(List<string> url)
+        {
+            List<string> urls = DecodeUrls(url);
+            _context.Receiver.Urls = url;
+            _context.Invoker.SetCommand(_context.Command);
+        }
         public async Task<List<ContactDTO>> CrawlContactInfo(List<string> url)
         {
             // Invoke Command Object
-            List<string> urls = DecodeUrls(url);
-            _logger.LogInformation("url: {0}", url);
-            IReceiver crawler_receiver = new Receiver(url, _adapter, _contact);
-            ICommand command = new ConcreteCommand(crawler_receiver);
-            Invoker crawler_invoker = new Invoker();
-            crawler_invoker.SetCommand(command);
-            return await crawler_invoker.ExecuteCommand();
+            SetContext(url);
+            return await _context.Invoker.ExecuteCommand();
+        }
+
+        public async Task<List<ContactDTO>> CrawlContactInfo(List<string> url, int deepCrawl)
+        {
+            SetContext(url);
+            return await _context.Invoker.ExecuteCommand();
         }
 
         public List<string> DecodeUrls(List<string> urls)
@@ -45,5 +54,50 @@ namespace Web_Contact_Extractor.Controllers
             return decodedUrls;      
         }
 
+    }
+
+    public class Context : IContext
+    {
+        IReceiver _crawler_receiver;
+        ICommand _command;
+        IInovker _crawler_invoker;
+
+        public Context(IReceiver receiver, ICommand command, IInovker invoker)
+        {
+            _crawler_receiver = receiver;
+            _command = command;
+            _crawler_invoker = invoker; 
+        }
+
+        public IReceiver Receiver
+        {
+            get 
+            {
+                return _crawler_receiver;
+            }
+        }
+
+        public ICommand Command
+        {
+            get 
+            {
+                return _command;
+            }
+        }
+
+        public IInovker Invoker
+        {
+            get
+            {
+                return _crawler_invoker;
+            }
+        }
+    }
+
+    public interface IContext 
+    {
+        public IReceiver Receiver { get; }
+        public ICommand Command { get; }
+        public IInovker Invoker { get; }
     }
 }

@@ -7,5 +7,6 @@ namespace Web_Contact_Extractor.Command
     {
         public void Action();
         public Task<List<ContactDTO>> GetContactInfo();
+        public IList<string> Urls { set; get; }
     }
 }

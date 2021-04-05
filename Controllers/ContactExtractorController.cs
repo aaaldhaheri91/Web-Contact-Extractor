@@ -32,11 +32,6 @@ namespace Web_Contact_Extractor.Controllers
             
             // _logger.LogInformation(document.DocumentElement.OuterHtml);
             List<string> urls = url.ToList<string>();
-            // url.To
-            // for (var i = 0; i < url.Length; i++)
-            // {
-            //     urls.Add(url[i]);
-            // }
             return Ok(await _contract.CrawlContactInfo(urls));
         }
     }

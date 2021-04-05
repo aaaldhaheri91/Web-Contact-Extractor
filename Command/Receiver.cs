@@ -16,13 +16,23 @@ namespace Web_Contact_Extractor.Command
         private IList<string> _urls;
         private IContactAdapter _adapter;
         private IContact _contact;
-        public Receiver(IList<string> url, IContactAdapter adapter, IContact contact)
+        public Receiver(IContactAdapter adapter, IContact contact)
         {
-            _urls = url;
             _adapter = adapter;
             _contact = contact;
         }
-        public Receiver(){}
+
+        public IList<string> Urls
+        {
+            set 
+            {
+                _urls = value;
+            }
+            get
+            {
+                return _urls;
+            }
+        }
         public void Action()
         {
             Console.WriteLine("Action receieved Command");
